@@ -37,7 +37,7 @@ class AddEditTaskViewModel @ViewModelInject constructor(
 
     fun onSaveClick() {
         if (taskName.isBlank()) {
-            showInvalidInputMessage("Name cannot be empty")
+            showInvalidInputMessage("ToDo tidak boleh kosong")
             return
         }
 

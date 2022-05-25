@@ -71,8 +71,8 @@ class TasksViewModel @ViewModelInject constructor(
 
     fun onAddEditResult(result: Int) {
         when (result) {
-            ADD_TASK_RESULT_OK -> showTaskSavedConfirmationMessage("Task added")
-            EDIT_TASK_RESULT_OK -> showTaskSavedConfirmationMessage("Task updated")
+            ADD_TASK_RESULT_OK -> showTaskSavedConfirmationMessage("ToDo Berhasil Ditambahkan")
+            EDIT_TASK_RESULT_OK -> showTaskSavedConfirmationMessage("ToDo Terupdate")
         }
     }
 
@@ -80,10 +80,15 @@ class TasksViewModel @ViewModelInject constructor(
         tasksEventChannel.send(TasksEvent.ShowTaskSavedConfirmationMessage(text))
     }
 
+    fun onDeleteAllCompletedClick() = viewModelScope.launch {
+        tasksEventChannel.send(TasksEvent.NavigateToDeleteAllCompletedScreen)
+    }
+
     sealed class TasksEvent {
         object NavigateToAddTaskScreen : TasksEvent()
         data class NavigateToEditTaskScreen(val task: Task) : TasksEvent()
         data class ShowUndoDeleteTaskMessage(val task: Task) : TasksEvent()
         data class ShowTaskSavedConfirmationMessage(val msg: String) : TasksEvent()
+        object NavigateToDeleteAllCompletedScreen : TasksEvent()
     }
 }
