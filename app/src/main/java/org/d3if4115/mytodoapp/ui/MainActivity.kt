@@ -1,4 +1,4 @@
-package org.d3if4115.mytodoapp
+package org.d3if4115.mytodoapp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
